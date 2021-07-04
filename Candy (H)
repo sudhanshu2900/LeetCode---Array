@@ -1,0 +1,31 @@
+PROBLEM LINK: https://leetcode.com/problems/candy/
+
+
+SOLUTION:
+
+int candy(vector<int>& ratings) {
+      
+        int n = ratings.size(), sum = 0;
+        vector<int> leftView(n,1), rightView(n,1);
+        
+        for(int i=1; i<n; i++){
+            if(ratings[i] > ratings[i-1])
+                leftView[i] = leftView[i-1] + 1;
+        }
+        
+        for(int i=n-2; i>=0; i--){
+            if(ratings[i] > ratings[i+1])
+                rightView[i] = rightView[i+1] + 1;
+        }
+        
+        for(int i=0; i<n; i++){
+            sum += max(leftView[i], rightView[i]);
+        }
+        
+        return sum;
+    }
+    
+    
+    
+    
+    
