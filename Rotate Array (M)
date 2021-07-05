@@ -1,0 +1,31 @@
+PROBLEM LINK: https://leetcode.com/problems/rotate-array/
+
+
+SOLUTION:
+
+___________ solution 1________________
+
+void rotate(vector<int>& nums, int k) {
+        k %= nums.size();
+        
+        reverse(nums.begin(), nums.end());
+        reverse(nums.begin(), nums.begin() + k);
+        reverse(nums.begin() + k, nums.end());
+        
+    }
+    
+    
+ ____________solution 2_______________
+ 
+ void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int> result(n,0);
+        for(int i=0;i<n;i++){
+            result[(i + k)%n] = nums[i];
+        }
+        nums = result;
+    }
+
+
+
+
