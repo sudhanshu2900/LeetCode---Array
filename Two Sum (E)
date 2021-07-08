@@ -1,0 +1,32 @@
+PROBLEM LNIK: https://leetcode.com/problems/two-sum/
+
+
+SOLUTION:
+
+
+vector<int> twoSum(vector<int>& nums, int target) {
+        
+        unordered_map<int, int> mp;
+        int a, b;
+        
+        for(int i=0; i<nums.size(); i++){
+            mp.insert({nums[i], i});
+        }            
+        
+        for(int i=0; i<nums.size(); i++){
+            auto itr = mp.find(target-nums[i]);
+            if(itr != mp.end()){                
+                a = (i);
+                b = (itr->second);
+            }
+        }
+
+        return {a,b};
+
+    }
+    
+    
+    
+    
+    
+    
