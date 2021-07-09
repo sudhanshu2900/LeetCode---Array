@@ -1,0 +1,61 @@
+PROBLEM LINK: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
+
+
+SOLUTION:
+
+
+__________________________1st Solution_________________________________________________
+
+
+
+bool search(vector<int>& nums, int target) {
+        unordered_set<int> s;
+        
+        for(int i=0; i<nums.size(); i++)
+            s.insert(nums[i]);
+        
+        if(s.find(target) != s.end()) return true;
+        else return false;
+        
+ }
+ 
+ 
+ _____________________________ 2nd Solution_____________________________________________
+ 
+ 
+ bool search(vector<int>& nums, int target) {
+        
+        int low = 0, high = nums.size()-1, mid;
+        
+        while(low <= high){
+            mid = (low + high)>>1;
+            
+            if(nums[mid] == target) return true;
+            
+            else if(nums[low] == nums[mid] && nums[high] == nums[mid]){
+                low++;
+                high--;
+            }
+            
+            else if(nums[low] <= nums[mid]){
+                if(nums[low] <= target && nums[mid] > target)
+                    high = mid-1;
+                else
+                    low = mid+1;
+            }
+            
+            else{
+                if(nums[mid] < target && nums[high] >= target)
+                    low = mid+1;
+                else
+                    high = mid-1;
+            }
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
