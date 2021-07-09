@@ -1,0 +1,46 @@
+PROBLEM LINK: https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+
+SOLUTION:
+
+
+int result = -1;
+    void findTarget(vector<int>& nums, int target, int low, int high){
+        int mid = (low + high) >> 1;
+        
+        if(low > high) return;
+        
+        if(nums[mid] == target){
+            result = mid;
+            return;
+        }
+        
+        else if(nums[mid] < nums[high]){
+            if(nums[mid]<=target && nums[high]>= target)
+                findTarget(nums, target, mid+1, high);
+            else
+                findTarget(nums, target, low, mid-1);
+        }
+        
+        else{
+            if(nums[mid] >= target && nums[low] <= target)
+                findTarget(nums, target, low, mid-1);
+            else
+                findTarget(nums, target, mid+1, high);
+        }
+        
+    }
+    
+    
+    int search(vector<int>& nums, int target) {
+        int low = 0, high = nums.size()-1;
+        
+        findTarget(nums, target, low, high);
+        return result;
+    }
+    
+    
+    
+    
+    
+    
